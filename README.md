@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # EnsembleData Python API
 
 [![pypi](https://img.shields.io/pypi/v/ensembledata?color=%2334D058&label=pypi%20package)](https://pypi.org/project/ensembledata/)
@@ -147,3 +148,6 @@ result = client.tiktok.user_info_from_username(username="daviddobrik", timeout=1
 ### Types
 
 The package uses type hints, and is type checked with the latest version of `mypy`. If you experience any type checking related issues with the package, please let us know by creating an issue.
+=======
+# introtobigdata
+>>>>>>> 9a9736320b53d813bda0df025f1249530c60e687
