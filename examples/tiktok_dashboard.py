@@ -65,46 +65,44 @@ def fetch_hashtag_data(token, hashtag, max_pages):
 # Main content
 # Main content
 # Fetch data using the predefined API token
-posts = fetch_hashtag_data(API_TOKEN, hashtag, max_pages)
 
-if posts:
-    # Convert to DataFrame
-    df = pd.DataFrame(posts)
-    
-    # Display basic stats
-    st.header("Overview")
-    col1, col2, col3, col4 = st.columns(4)
-    
-    with col1:
-        st.metric("Total Posts", len(df))
-    with col2:
-        st.metric("Total Likes", df['likes'].sum())
-    with col3:
-        st.metric("Total Comments", df['comments'].sum())
-    with col4:
-        st.metric("Total Views", df['plays'].sum())
-    
-    # Engagement visualization
-    st.header("Engagement Analysis")
-    
-    # Scatter plot of likes vs comments
-    fig_scatter = px.scatter(df, 
-                           x='likes', 
-                           y='comments',
-                           size='plays',
-                           hover_data=['desc'],
-                           title='Likes vs Comments (size represents play count)')
-    st.plotly_chart(fig_scatter, use_container_width=True)
-    
-    # Top posts table
-    st.header("Top Posts")
-    top_posts = df.nlargest(10, 'likes')[['desc', 'likes', 'comments', 'shares', 'plays']]
-    st.dataframe(top_posts)
-    
-    # Download option
-    st.download_button(
-        label="Download data as CSV",
-        data=df.to_csv(index=False).encode('utf-8'),
-        file_name=f'tiktok_{hashtag}_data.csv',
-        mime='text/csv',
-    )
+# Only fetch and display data if a hashtag is entered
+if hashtag.strip() == "":
+    st.info("Please enter a hashtag to analyze.")
+else:
+    posts = fetch_hashtag_data(API_TOKEN, hashtag, max_pages)
+    if posts:
+        # Convert to DataFrame
+        df = pd.DataFrame(posts)
+        # Display basic stats
+        st.header("Overview")
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Total Posts", len(df))
+        with col2:
+            st.metric("Total Likes", df['likes'].sum())
+        with col3:
+            st.metric("Total Comments", df['comments'].sum())
+        with col4:
+            st.metric("Total Views", df['plays'].sum())
+        # Engagement visualization
+        st.header("Engagement Analysis")
+        # Scatter plot of likes vs comments
+        fig_scatter = px.scatter(df, 
+                               x='likes', 
+                               y='comments',
+                               size='plays',
+                               hover_data=['desc'],
+                               title='Likes vs Comments (size represents play count)')
+        st.plotly_chart(fig_scatter, use_container_width=True)
+        # Top posts table
+        st.header("Top Posts")
+        top_posts = df.nlargest(10, 'likes')[['desc', 'likes', 'comments', 'shares', 'plays']]
+        st.dataframe(top_posts)
+        # Download option
+        st.download_button(
+            label="Download data as CSV",
+            data=df.to_csv(index=False).encode('utf-8'),
+            file_name=f'tiktok_{hashtag}_data.csv',
+            mime='text/csv',
+        )
