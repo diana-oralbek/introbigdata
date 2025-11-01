@@ -1,13 +1,12 @@
 from ensembledata.api import EDClient, EDError
 
-# Your API token
-API_TOKEN = "d27oMjsSy7Lw4G8K"
+# My API token for running the code.
+API_TOKEN = "f5Kbwj1Kz03O2GXV"
 
 def test_tiktok_call():
     client = EDClient(API_TOKEN)
     
     try:
-        # Try a single hashtag search
         result = client.tiktok.hashtag_search(hashtag="test")
         print("Success! API call worked.")
         print(f"Units charged: {result.units_charged}")

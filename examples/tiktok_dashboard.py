@@ -3,9 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from ensembledata.api import EDClient
-
-# Set your API token here
-API_TOKEN = "f5Kbwj1Kz03O2GXV"  # Your API token
+API_TOKEN = "f5Kbwj1Kz03O2GXV"  
 
 # Page config
 st.set_page_config(page_title="TikTok Analytics Dashboard", layout="wide")

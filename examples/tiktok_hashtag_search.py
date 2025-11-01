@@ -33,7 +33,7 @@ def fetch_hashtag_posts_full(client: EDClient, hashtag: str, max_cursor: Optiona
 
 def main() -> None:
     # Configure token: prefer env var, otherwise paste below
-    pasted_token = "d27oMjsSy7Lw4G8K"
+    pasted_token = "f5Kbwj1Kz03O2GXV"
     token = os.environ.get("ENSEMBLEDATA_API_TOKEN", pasted_token)
     if not token or token == "PASTE_YOUR_TOKEN_HERE":
         raise SystemExit(

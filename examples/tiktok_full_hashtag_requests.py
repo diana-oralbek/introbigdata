@@ -4,13 +4,10 @@ from typing import Any, Dict
 
 import requests
 
-
 ROOT = "https://ensembledata.com/apis"
 ENDPOINT = "/tt/hashtag/recent-posts"
 
-
 def main() -> None:
-    # Configure via env vars (preferred) or paste below
     pasted_token = "d27oMjsSy7Lw4G8K"
     token = os.environ.get("ENSEMBLEDATA_API_TOKEN", pasted_token)
     if not token or token == "PASTE_YOUR_TOKEN_HERE":

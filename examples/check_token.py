@@ -2,11 +2,10 @@ from ensembledata.api import EDClient
 from datetime import datetime
 
 # Your API token
-API_TOKEN = "d27oMjsSy7Lw4G8K"
+API_TOKEN = "f5Kbwj1Kz03O2GXV"
 
 def check_token_status():
     client = EDClient(API_TOKEN)
-    
     # Get today's date in YYYY-MM-DD format
     today = datetime.now().strftime("%Y-%m-%d")
     
@@ -16,7 +15,6 @@ def check_token_status():
         print(f"\nToday's Usage ({today}):")
         print(f"Units charged: {usage.units_charged}")
         print(f"Usage data: {usage.data}")
-        
         # Get usage history for the last 7 days
         history = client.customer.get_usage_history(days=7)
         print(f"\nLast 7 days history:")

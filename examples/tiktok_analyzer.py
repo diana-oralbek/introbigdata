@@ -2,24 +2,22 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from ensembledata.api import EDClient
+API_TOKEN = "d27oMjsSy7Lw4G8K"  
 
-# Set your API token here
-API_TOKEN = "d27oMjsSy7Lw4G8K"  # Your API token
 
-# Page config
 st.set_page_config(page_title="TikTok Hashtag Analytics Dashboard", layout="wide")
 
 # Title
 st.title("TikTok Hashtag Analytics Dashboard 📊")
 
-# Sidebar for inputs
+#sidebar 
 with st.sidebar:
     st.header("Analysis Settings")
     
     # Hashtag input
     hashtag = st.text_input("Enter hashtag to analyze (without #)", value="trending")
     
-    # Number of pages
+    # Number of pages for fetching data
     max_pages = st.slider("Number of pages to analyze", 1, 10, 5, 
                          help="More pages = more data but slower analysis")
 
@@ -63,11 +61,11 @@ def fetch_hashtag_data(token, hashtag, max_pages):
 
 # Main content
 try:
-    # Fetch data using the predefined API token
+    # Fetch data using the API token provided
     posts = fetch_hashtag_data(API_TOKEN, hashtag, max_pages)
     
     if posts:
-        # Convert to DataFrame
+        # Convert to DataFrame for further analysis
         df = pd.DataFrame(posts)
         
         # Display basic stats
