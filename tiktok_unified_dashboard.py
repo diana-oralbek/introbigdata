@@ -67,7 +67,7 @@ else:
             st.metric("Total Views", df['plays'].sum())
         st.subheader("Engagement Analysis")
         fig_scatter = px.scatter(df, x='likes', y='comments', size='plays', hover_data=['desc'], title='Likes vs Comments (size=plays)')
-        st.plotly_chart(fig_scatter, use_container_width=True)
+        st.plotly_chart(fig_scatter, width='stretch')
         st.subheader("Top Posts")
         top_posts = df.nlargest(10, 'likes')[['desc', 'likes', 'comments', 'shares', 'plays']]
         st.dataframe(top_posts)
@@ -106,7 +106,7 @@ else:
         orientation='h'
     )
     fig1.update_layout(yaxis={'categoryorder': 'total ascending'})
-    st.plotly_chart(fig1, use_container_width=True)
+    st.plotly_chart(fig1, width='stretch')
     engagement_types = top_videos[['video_id', 'video_view_count', 'video_like_count', 'video_share_count', 'video_comment_count', 'video_download_count']]
     engagement_melted = engagement_types.melt(
         id_vars='video_id',
@@ -122,9 +122,9 @@ else:
         barmode='stack'
     )
     fig2.update_layout(xaxis_title="Video ID", yaxis_title="Engagement Count")
-    st.plotly_chart(fig2, use_container_width=True)
+    st.plotly_chart(fig2, width='stretch')
     # --- SECTION 3: ChatGPT AI Report ---
-    st.header("3. ChatGPT AI Report (Experimental)")
+    st.header("3. ChatGPT AI Report")
     st.write("Generate an AI-powered summary of the filtered TikTok trend data.")
     if st.button("Generate AI Report"):
         with st.spinner("Generating report..."):
